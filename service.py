@@ -10,9 +10,6 @@ __addonname__           = __addon__.getAddonInfo('name')
 __icon__                = __addon__.getAddonInfo('icon')
 __addonpath__           = xbmc.translatePath(__addon__.getAddonInfo('path'))
 
-#name of script for this service work
-serviceForScript = 'script.user.rating'
-
 class Monitor(xbmc.Monitor):
     
     def __init__(self):
@@ -28,7 +25,7 @@ class Monitor(xbmc.Monitor):
                     idDB = data['item']['id']
                     mType = data['item']['type']
                     
-                    xbmc.executebuiltin('XBMC.RunScript(' + serviceForScript + ', ' + method + ', ' + str(idDB) + ', ' + mType + ')')
+                    xbmc.executebuiltin('XBMC.RunScript(' + __addon_id__ + ', ' + method + ', ' + str(idDB) + ', ' + mType + ')')
     
 monitor = Monitor()
 
