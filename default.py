@@ -71,7 +71,7 @@ class GUI():
         # display window rating
         import rateDialog
         rating = rateDialog.DIALOG().start(item, __addon__.getSetting('profileName'))
-        if rating is not False:
+        if rating is not None:
             self.addVote(item, rating)
             self.sendToWebsites(item, rating, True)
             

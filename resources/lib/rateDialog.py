@@ -36,81 +36,54 @@ REMOTE_8                    = 66
 REMOTE_9                    = 67
 NUMBERS_GROUP = [REMOTE_0, REMOTE_1, REMOTE_2, REMOTE_3, REMOTE_4, REMOTE_5, REMOTE_6, REMOTE_7, REMOTE_8, REMOTE_9]
 
-RETURNED = False
-
-import debug
+buttons = {
+    11020: 0,
+    11021: 1,
+    11022: 2,
+    11023: 3,
+    11024: 4,
+    11025: 5,
+    11026: 6,
+    11027: 7,
+    11028: 8,
+    11029: 9,
+    11030: 10
+}
 
 class DIALOG:
     def start(self, item, profile):
         
-        display = SHOW(item, profile)
+        display = SHOW("script-user-rating-rateDialog.xml", __addonpath__, item=item, profile=profile)
         display.doModal()
+        rating = display.rating
         del display
-        return RETURNED
+        return rating
         
-class SHOW(xbmcgui.WindowDialog):
+class SHOW(xbmcgui.WindowXMLDialog):
     
-    def __init__(self, item, profile):
+    def __init__(self, xmlFile, resourcePath, item, profile):
         # set window property to true
         xbmcgui.Window(10000).setProperty(__addon_id__ + '_running', 'True')
         
-        # set vars
+        self.rating = None
         self.item = item
+        self.profile = profile
         
-        self.button = []
-        
-        # create window
-        bgResW = 520
-        bgResH = 200
-        bgPosX = (1280 - bgResW) / 2
-        bgPosY = (720 - bgResH) / 2
-        self.bg = xbmcgui.ControlImage(bgPosX, bgPosY, bgResW, bgResH, __path_img__+'//bg.png')
-        self.addControl(self.bg)
-        self.labelName = xbmcgui.ControlLabel(bgPosX+20, bgPosY+22, bgResW-40, bgResH-40, '[B]' + profile + '[/B]', 'font14', '0xFFE60000',  alignment=2)
-        self.addControl(self.labelName)
-        self.labelTitle = xbmcgui.ControlLabel(bgPosX+20, bgPosY+60, bgResW-40, bgResH-40, '[B]' + __lang__(32100) + ':[/B]', 'font14', '0xFF0084ff',  alignment=2)
-        self.addControl(self.labelTitle)
-        self.label = xbmcgui.ControlLabel(bgPosX+20, bgPosY+94, bgResW-40, bgResH-40, item['title'], 'font13', '0xFFFFFFFF',  alignment=2)
-        self.addControl(self.label)
-        
-        # create button list
-        self.starLeft = bgPosX+40
-        self.starTop = bgPosY+136
-        for i in range(11):
-            if i == 0:
-                self.button.append(xbmcgui.ControlButton(self.starLeft, self.starTop, 30, 30, "", focusTexture=__path_img__ + '//star0f.png', noFocusTexture=__path_img__ + '//star0.png'))
-            else:
-                if i <= self.item['rating']:
-                    self.button.append(xbmcgui.ControlButton(self.starLeft+(i*40), self.starTop, 30, 30, "", focusTexture=__path_img__ + '//star2f.png', noFocusTexture=__path_img__ + '//star2.png'))
-                else:
-                    self.button.append(xbmcgui.ControlButton(self.starLeft+(i*40), self.starTop, 30, 30, "", focusTexture=__path_img__ + '//star2f.png', noFocusTexture=__path_img__ + '//star1.png'))
-                
-            self.addControl(self.button[i])
-        self.setFocus(self.button[self.item['rating']])
+    def onInit(self):
+        self.getControl(10010).setLabel('[B]' + self.profile + '[/B]')
+        self.getControl(10012).setLabel(self.item['title'])
+        self.setFocus(self.getControl(buttons.keys()[self.item['rating']]))
+    
+    def onClick(self, controlID):
+        self.rating = buttons[controlID]
+        self.close()
         
     def onAction(self, action):
         if action in BACK_GROUP:
             self.close()
             
-        if action == ACTION_MOVE_RIGHT or action == ACTION_MOVE_UP:
-            if self.item['rating'] < 10:
-                self.item['rating'] = self.item['rating'] + 1
-            self.setFocus(self.button[self.item['rating']])
-            
-        if action == ACTION_MOVE_LEFT or action == ACTION_MOVE_DOWN:
-            if self.item['rating'] > 0:
-                self.item['rating'] = self.item['rating'] - 1
-            self.setFocus(self.button[self.item['rating']])
-            
         if action in NUMBERS_GROUP:
-            self.item['rating'] = NUMBERS_GROUP.index(action)
-            self.setFocus(self.button[self.item['rating']])
-        
-    def onControl(self, control):
-        global RETURNED
-        
-        for i in range(11):
-            if control == self.button[i]:
-                self.close()
-                RETURNED = i
-                
+            digit = NUMBERS_GROUP.index(action)
+            self.setFocus(self.getControl(buttons.keys()[digit]))
+            
+    
