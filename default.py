@@ -20,6 +20,7 @@ __path_img__            = os.path.join(__addonpath__, 'resources', 'media' )
 sys.path.append(__path__)
 
 import debug
+import syncData
 
 class GUI():
     def __init__(self):
@@ -31,15 +32,12 @@ class GUI():
         # declarate media type
         d_for = ['movie', 'tvshow', 'episode']
         
-        #get settings.xml
-        self.onWatched      = __addon__.getSetting('onWatched')
-        self.onlyNotRated   = __addon__.getSetting('onlyNotRated')
-        
         item = {}
         
         # open sync dialog if no parameter
         if (len(sys.argv) == 0 or len(sys.argv[0]) == 0):
-            #self.syncData()
+            import syncData
+            syncData.SYNC().start()
             return
         
         # detect that user or service run script
@@ -63,23 +61,21 @@ class GUI():
         
         # check conditions from settings
         if self.runFromService is True:
-            if 'false' in self.onWatched:
-                return
-            if 'true' in self.onlyNotRated and item['rating'] > 0:
+            if 'true' in __addon__.getSetting('onlyNotRated') and item['rating'] > 0:
                 return
         
         # display window rating
         import rateDialog
-        rating = rateDialog.DIALOG().start(item, __addon__.getSetting('profileName'))
-        if rating is not None:
-            self.addVote(item, rating)
-            self.sendToWebsites(item, rating, True)
+        item['new_rating'] = rateDialog.DIALOG().start(item, __addon__.getSetting('profileName'))
+        if item['new_rating'] is not None:
+            self.addVote(item)
+            self.sendToWebsites(item, True)
             
-            # display window rating for second profile
-            if 'true' in __addon__.getSetting('enableTMDBsec') or 'true' in __addon__.getSetting('enableFILMWEBsec') or 'true' in __addon__.getSetting('enableTVDBsec'):
-                rating = rateDialog.DIALOG().start(item, __addon__.getSetting('profileName'))
-                if rating is not False:
-                    self.sendToWebsites(item, rating, False)
+        # display window rating for second profile
+        if 'true' in __addon__.getSetting('enableTMDBsec') or 'true' in __addon__.getSetting('enableFILMWEBsec') or 'true' in __addon__.getSetting('enableTVDBsec'):
+            item['new_rating'] = rateDialog.DIALOG().start(item, __addon__.getSetting('profilNamesec'))
+            if item['new_rating'] is not None:
+                self.sendToWebsites(item, False)
             
     def getData(self, dbID, mType):
         jsonGetSource = '{"jsonrpc": "2.0", "method": "VideoLibrary.Get' + mType.title() + 'Details", "params": { "properties" : ["title", "userrating"], "' + mType + 'id": ' + str(dbID) + '}, "id": "1"}'
@@ -97,25 +93,25 @@ class GUI():
             
         return { 'dbID': dbID, 'mType': mType, 'title': title, 'rating': rating }
         
-    def addVote(self, item, rating):
-        jsonAdd = '{"jsonrpc": "2.0", "id": 1, "method": "VideoLibrary.Set' + item['mType'].title() + 'Details", "params": {"' + item['mType'] + 'id" : ' + item['dbID'] + ', "userrating": ' + str(rating) + '}}'
+    def addVote(self, item):
+        jsonAdd = '{"jsonrpc": "2.0", "id": 1, "method": "VideoLibrary.Set' + item['mType'].title() + 'Details", "params": {"' + item['mType'] + 'id" : ' + item['dbID'] + ', "userrating": ' + str(item['new_rating']) + '}}'
         xbmc.executeJSONRPC(jsonAdd)
 
-    def sendToWebsites(self, item, rating, master):
+    def sendToWebsites(self, item, master):
         # send rate to tmdb
         if 'true' in __addon__.getSetting('enableTMDB' + item['mType']):
             import tmdb
-            tmdb.TMDB(master).sendRating(item, int(rating))
+            tmdb.TMDB(master).sendRating([item])
             
         # send rate to tvdb
         if 'true' in __addon__.getSetting('enableTVDB' + item['mType']):
             import tvdb
-            tvdb.TVDB(master).sendRating(item, int(rating))
+            tvdb.TVDB(master).sendRating([item])
             
         # send rate to filmweb
         if 'true' in __addon__.getSetting('enableFILMWEB' + item['mType']):
             import filmweb
-            filmweb.FILMWEB(master).sendRating(item, int(rating))
+            filmweb.FILMWEB(master).sendRating([item])
             
 # lock script to prevent duplicates
 if (xbmcgui.Window(10000).getProperty(__addon_id__ + '_running') != 'True'):

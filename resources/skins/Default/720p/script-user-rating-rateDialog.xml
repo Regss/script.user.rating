@@ -24,7 +24,7 @@
                 <label></label>
                 <align>center</align>
                 <font>font14</font>
-                <textcolor>FFE60000</textcolor>		
+                <textcolor>blue</textcolor>		
              </control>
             <control type="label" id="10011">
                 <description>Label</description>

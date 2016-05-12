@@ -1,4 +1,4 @@
-# script.filmweb.oceny language file
+# script.user.rating language file
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,12 +12,12 @@ msgstr ""
 
 #: Settings
 msgctxt "#32001"
-msgid "Show rating box when marked as watched"
+msgid "Auto show rating dialog when movie marked as watched"
 msgstr ""
 
 #: Settings
 msgctxt "#32002"
-msgid "Show only for not rated media"
+msgid "Auto show rating dialog only for not rated media"
 msgstr ""
 
 #: Settings
@@ -28,6 +28,11 @@ msgstr ""
 #: Settings
 msgctxt "#32004"
 msgid "Name of second profile (only submit to websites)"
+msgstr ""
+
+#: Settings
+msgctxt "#32005"
+msgid "Auto show rating dialog when episode marked as watched"
 msgstr ""
 
 #: Settings
@@ -112,7 +117,7 @@ msgstr ""
 
 #: Settings
 msgctxt "#32025"
-msgid "TVDB Password"
+msgid "TVDB Key"
 msgstr ""
 
 #: Settings
@@ -127,7 +132,7 @@ msgstr ""
 
 #: Settings
 msgctxt "#32028"
-msgid "TVDB second account Password"
+msgid "TVDB second account Key"
 msgstr ""
 
 #: Settings
@@ -193,4 +198,129 @@ msgstr ""
 #: GUI
 msgctxt "#32110"
 msgid "Login Error"
+msgstr ""
+
+#: GUI
+msgctxt "#32120"
+msgid "Select direction"
+msgstr ""
+
+#: GUI
+msgctxt "#32121"
+msgid "Select media type"
+msgstr ""
+
+#: GUI
+msgctxt "#32122"
+msgid "Movies"
+msgstr ""
+
+#: GUI
+msgctxt "#32123"
+msgid "TVShows"
+msgstr ""
+
+#: GUI
+msgctxt "#32124"
+msgid "Episodes"
+msgstr ""
+
+#: GUI
+msgctxt "#32125"
+msgid "Retrive rated"
+msgstr ""
+
+#: GUI
+msgctxt "#32126"
+msgid "No rated"
+msgstr ""
+
+#: GUI
+msgctxt "#32127"
+msgid "from"
+msgstr ""
+
+#: GUI
+msgctxt "#32128"
+msgid "Items"
+msgstr ""
+
+#: GUI
+msgctxt "#32129"
+msgid "with correct"
+msgstr ""
+
+#: GUI
+msgctxt "#32130"
+msgid "IDs that can be synced"
+msgstr ""
+
+#: GUI
+msgctxt "#32131"
+msgid "with not existed rating"
+msgstr ""
+
+#: GUI
+msgctxt "#32132"
+msgid "NEW"
+msgstr ""
+
+#: GUI
+msgctxt "#32133"
+msgid "with existed rating"
+msgstr ""
+
+#: GUI
+msgctxt "#32134"
+msgid "EXIST"
+msgstr ""
+
+#: GUI
+msgctxt "#32135"
+msgid "with missing"
+msgstr ""
+
+#: GUI
+msgctxt "#32136"
+msgid "IDs that can not be synced"
+msgstr ""
+
+#: GUI
+msgctxt "#32137"
+msgid "Sync"
+msgstr ""
+
+#: GUI
+msgctxt "#32138"
+msgid "Replace All"
+msgstr ""
+
+#: GUI
+msgctxt "#32139"
+msgid "Add only not existed"
+msgstr ""
+
+#: GUI
+msgctxt "#32140"
+msgid "Cancel"
+msgstr ""
+
+#: GUI
+msgctxt "#32141"
+msgid "Error connection"
+msgstr ""
+
+#: GUI
+msgctxt "#32142"
+msgid "ratings to"
+msgstr ""
+
+#: GUI
+msgctxt "#32143"
+msgid "SYNC MENU"
+msgstr ""
+
+#: GUI
+msgctxt "#32144"
+msgid "Synced"
 msgstr ""
