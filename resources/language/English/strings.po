@@ -67,7 +67,7 @@ msgstr ""
 
 #: Settings
 msgctxt "#32014"
-msgid "TMDB Loign"
+msgid "TMDB Login"
 msgstr ""
 
 #: Settings
@@ -82,7 +82,7 @@ msgstr ""
 
 #: Settings
 msgctxt "#32017"
-msgid "TMDB second account Loign"
+msgid "TMDB second account login"
 msgstr ""
 
 #: Settings
@@ -112,7 +112,7 @@ msgstr ""
 
 #: Settings
 msgctxt "#32024"
-msgid "TVDB Loign"
+msgid "TVDB Login"
 msgstr ""
 
 #: Settings
@@ -127,7 +127,7 @@ msgstr ""
 
 #: Settings
 msgctxt "#32027"
-msgid "TVDB second account Loign"
+msgid "TVDB second account login"
 msgstr ""
 
 #: Settings
@@ -157,7 +157,7 @@ msgstr ""
 
 #: Settings
 msgctxt "#32034"
-msgid "FILMWEB Loign"
+msgid "FILMWEB Login"
 msgstr ""
 
 #: Settings
@@ -172,7 +172,7 @@ msgstr ""
 
 #: Settings
 msgctxt "#32037"
-msgid "FILMWEB second account Loign"
+msgid "FILMWEB second account login"
 msgstr ""
 
 #: Settings
