@@ -67,8 +67,8 @@ msgstr "Wysyłaj dla odcinków"
 
 #: Settings
 msgctxt "#32014"
-msgid "TMDB Loign"
-msgstr "TMDB Loign"
+msgid "TMDB Login"
+msgstr "TMDB Login"
 
 #: Settings
 msgctxt "#32015"
@@ -82,8 +82,8 @@ msgstr "Włącz drugie konto do wysyłania do TMDB"
 
 #: Settings
 msgctxt "#32017"
-msgid "TMDB second account Loign"
-msgstr "TMDB drugie konto Loign"
+msgid "TMDB second account login"
+msgstr "TMDB drugie konto login"
 
 #: Settings
 msgctxt "#32018"
@@ -112,8 +112,8 @@ msgstr "Wysyłaj dla odcinków"
 
 #: Settings
 msgctxt "#32024"
-msgid "TVDB Loign"
-msgstr "TVDB Loign"
+msgid "TVDB Login"
+msgstr "TVDB Login"
 
 #: Settings
 msgctxt "#32025"
@@ -127,8 +127,8 @@ msgstr "Włącz drugie konto do wysyłania do TVDB"
 
 #: Settings
 msgctxt "#32027"
-msgid "TVDB second account Loign"
-msgstr "TVDB drugie konto Loign"
+msgid "TVDB second account login"
+msgstr "TVDB drugie konto login"
 
 #: Settings
 msgctxt "#32028"
@@ -157,8 +157,8 @@ msgstr "Wysyłaj dla odcinków"
 
 #: Settings
 msgctxt "#32034"
-msgid "FILMWEB Loign"
-msgstr "FILMWEB Loign"
+msgid "FILMWEB Login"
+msgstr "FILMWEB Login"
 
 #: Settings
 msgctxt "#32035"
@@ -172,8 +172,8 @@ msgstr "Włącz drugie konto do wysyłania do FILMWEB"
 
 #: Settings
 msgctxt "#32037"
-msgid "FILMWEB second account Loign"
-msgstr "FILMWEB drugie konto Loign"
+msgid "FILMWEB second account login"
+msgstr "FILMWEB drugie konto login"
 
 #: Settings
 msgctxt "#32038"
